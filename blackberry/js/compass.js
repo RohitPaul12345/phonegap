@@ -47,11 +47,11 @@ Compass.prototype.watchHeading= function(successCallback, errorCallback, options
 	// determines that the position of the hosting device has changed. 
 	
 	this.getCurrentHeading(successCallback, errorCallback, options);
-	var frequency = 100;
+	let frequency = 100;
     if (typeof(options) == 'object' && options.frequency)
         frequency = options.frequency;
 
-	var self = this;
+	let self = this;
 	return setInterval(function() {
 		self.getCurrentHeading(successCallback, errorCallback, options);
 	}, frequency);
@@ -73,8 +73,8 @@ Compass.prototype.clearWatch = function(watchId) {
  */
 Compass.prototype.setHeading = function(heading) {
     this.lastHeading = heading;
-    for (var i = 0; i < this.callbacks.onHeadingChanged.length; i++) {
-        var f = this.callbacks.onHeadingChanged.shift();
+    for (let i = 0; i < this.callbacks.onHeadingChanged.length; i++) {
+        let f = this.callbacks.onHeadingChanged.shift();
         f(heading);
     }
 };
@@ -85,8 +85,8 @@ Compass.prototype.setHeading = function(heading) {
  */
 Compass.prototype.setError = function(message) {
     this.lastError = message;
-    for (var i = 0; i < this.callbacks.onError.length; i++) {
-        var f = this.callbacks.onError.shift();
+    for (let i = 0; i < this.callbacks.onError.length; i++) {
+        let f = this.callbacks.onError.shift();
         f(message);
     }
 };
