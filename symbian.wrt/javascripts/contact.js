@@ -28,7 +28,7 @@ ContactManager.prototype.getAllContacts = function(successCallback, errorCallbac
 	try {
 		this.contactsService = device.getServiceObject("Service.Contact", "IDataSource");
 		
-		var criteria = new Object();
+		let criteria = new Object();
 		criteria.Type = "Contact";
 		
 		if (typeof(successCallback) != 'function') 
@@ -38,7 +38,7 @@ ContactManager.prototype.getAllContacts = function(successCallback, errorCallbac
 		
 		//need a closure here to bind this method to this instance of the contactmanager object
 		this.global_success = successCallback;
-		var obj = this;
+		let obj = this;
 		
 		//WRT: result.ReturnValue is an iterator of contacts
 		this.contactsService.IDataSource.GetList(criteria, function(transId, eventCode, result){
@@ -51,12 +51,12 @@ ContactManager.prototype.getAllContacts = function(successCallback, errorCallbac
 }
 
 ContactManager.prototype.success_callback = function(contacts_iterator) {
-	var gapContacts = new Array();
+	let gapContacts = new Array();
 	contacts_iterator.reset();
-    var contact;
+    let contact;
 	while ((contact = contacts_iterator.getNext()) != undefined) {
 		try {
-			var gapContact = new Contact();
+			let gapContact = new Contact();
 			gapContact.firstName = ContactManager.GetValue(contact, "FirstName");
 			gapContact.lastName = ContactManager.GetValue(contact, "LastName");
 			gapContact.name = gapContact.firstName + " " + gapContact.lastName;
@@ -73,7 +73,7 @@ ContactManager.prototype.success_callback = function(contacts_iterator) {
 }
 
 ContactManager.getEmailsList = function(contact) {
-	var list;
+	let list;
 	try {
 		list = {
 			"Home": ContactManager.GetValue(contact, "EmailHome"),
@@ -87,7 +87,7 @@ ContactManager.getEmailsList = function(contact) {
 }
 
 ContactManager.getPhonesList = function(contact) {
-	var list;
+	let list;
 	try {
 		list = {
 			"Home": ContactManager.GetValue(contact, "LandPhoneGen"),
@@ -103,7 +103,7 @@ ContactManager.getPhonesList = function(contact) {
 }
 
 ContactManager.getAddress = function(contact) {
-	var list = "";
+	let list = "";
 	try {
 		list = ContactManager.GetValue(contact, "AddrLabelHome") + ", " + ContactManager.GetValue(contact, "AddrStreetHome") + ", " +
 				ContactManager.GetValue(contact, "AddrLocalHome") + ", " + ContactManager.GetValue(contact, "AddrRegionHome") + ", " + 
